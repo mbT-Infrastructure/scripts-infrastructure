@@ -3,14 +3,16 @@ set -e
 
 DEVICE=""
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+USERNAME=""
 
 # help message
 for ARGUMENT in "$@"; do
     if [ "$ARGUMENT" == "-h" ] || [ "$ARGUMENT" == "--help" ]; then
         echo "usage: $(basename "$0") [ARGUMENT]"
-        echo "Set sysctl.conf with special default values."
+        echo "Configure default default applications."
         echo "ARGUMENT can be"
         echo "    --device DEVICE The device name."
+        echo "    --user USER The username of the user."
         exit
     fi
 done
@@ -20,6 +22,9 @@ while [[ -n "$1" ]]; do
     if [[ "$1" == "--device" ]]; then
         shift
         DEVICE="$1"
+    elif [[ "$1" == "--user" ]]; then
+        shift
+        USERNAME="$1"
     else
         echo "Unknown argument: \"$1\""
         exit 1
@@ -27,7 +32,7 @@ while [[ -n "$1" ]]; do
     shift
 done
 
-"${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
-    "curl --silent --location --output /etc/sysctl.conf \
-    https://raw.githubusercontent.com/mbT-Infrastructure/template-config-files/main/debian/\
-sysctl/sysctl.conf"
+"${SCRIPT_DIR}/configure-app.sh" --device "$DEVICE" --user "$USERNAME" --app DefaultApplications \
+    --config \
+    "https://raw.githubusercontent.com/mbT-Infrastructure/template-config-files/main/debian/\
+default-applications/default-applications.cfg"
