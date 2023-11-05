@@ -72,8 +72,9 @@ cd "$WORKING_DIR"
     --target /tmp
 
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
-    "su $USERNAME --login --command 'install-autonomous.sh configure \
-        --config /tmp/install-autonomous-config.cfg $APP' && \
-    rm /tmp/install-autonomous-config.cfg"
+    "chown $USERNAME /tmp/install-autonomous-config.cfg \
+        && su $USERNAME --login --command 'install-autonomous.sh configure \
+            --config /tmp/install-autonomous-config.cfg $APP' \
+        && rm /tmp/install-autonomous-config.cfg"
 
 rm -f -r "$WORKING_DIR"

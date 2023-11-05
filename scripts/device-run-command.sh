@@ -32,7 +32,7 @@ while [[ -n "$1" ]]; do
         COMMAND="$1"
     elif [[ "$1" == "--device" ]]; then
         shift
-        echo "\"--device $1\" is ignored"
+        echo "$(basename "$0"): \"--device $1\" is ignored"
     else
         echo "Unknown argument: \"$1\""
         exit 1

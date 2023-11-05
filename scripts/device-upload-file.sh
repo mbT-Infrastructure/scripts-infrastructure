@@ -31,7 +31,7 @@ fi
 while [[ -n "$1" ]]; do
     if [[ "$1" == "--device" ]]; then
         shift
-        echo "\"--device $1\" is ignored"
+        echo "$(basename "$0"): \"--device $1\" is ignored"
     elif [[ "$1" == "--file" ]]; then
         shift
         FILE="$1"
