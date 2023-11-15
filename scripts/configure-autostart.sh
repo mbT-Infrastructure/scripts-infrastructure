@@ -1,27 +1,19 @@
 #!/usr/bin/env bash
 set -e
 
-DEPENDENCIES=()
 DEVICE=""
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+USERNAME=""
 
 # help message
 for ARGUMENT in "$@"; do
     if [ "$ARGUMENT" == "-h" ] || [ "$ARGUMENT" == "--help" ]; then
         echo "usage: $(basename "$0") [ARGUMENT]"
-        echo "Remove unwanted apps."
+        echo "Configure default autostart settings."
         echo "ARGUMENT can be"
         echo "    --device DEVICE The device name."
+        echo "    --user USER The username of the user."
         exit
-    fi
-done
-
-
-# check dependencies
-for CMD in "${DEPENDENCIES[@]}"; do
-    if [[ -z "$(which "$CMD")" ]]; then
-        echo "\"${CMD}\" is missing!"
-        exit 1
     fi
 done
 
@@ -30,6 +22,9 @@ while [[ -n "$1" ]]; do
     if [[ "$1" == "--device" ]]; then
         shift
         DEVICE="$1"
+    elif [[ "$1" == "--user" ]]; then
+        shift
+        USERNAME="$1"
     else
         echo "Unknown argument: \"$1\""
         exit 1
@@ -37,6 +32,6 @@ while [[ -n "$1" ]]; do
     shift
 done
 
-"${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
-    "apt purge -qq -y deja-dup evince gedit gnome-2048 gnome-system-monitor gnote hexchat \
-    pidgin rhythmbox thunderbird totem xorriso"
+"${SCRIPT_DIR}/configure-app.sh" --device "$DEVICE" --user "$USERNAME" --app Autostart --config \
+    "https://raw.githubusercontent.com/mbT-Infrastructure/template-config-files/main/debian/\
+autostart/autostart.cfg"
