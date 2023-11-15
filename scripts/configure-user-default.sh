@@ -66,6 +66,7 @@ fi
 
 "${SCRIPT_DIR}/configure-autostart.sh" --device "$DEVICE" --user "$USER_USERNAME"
 "${SCRIPT_DIR}/configure-cinnamon.sh" --device "$DEVICE" --user "$USER_USERNAME"
+"${SCRIPT_DIR}/configure-copyq.sh" --device "$DEVICE" --user "$USER_USERNAME"
 "${SCRIPT_DIR}/configure-default-applications.sh" --device "$DEVICE" --user "$USER_USERNAME"
 "${SCRIPT_DIR}/configure-desktop-entries.sh" --device "$DEVICE" --user "$USER_USERNAME"
 "${SCRIPT_DIR}/configure-scanner.sh" --device "$DEVICE" --user "$USER_USERNAME"

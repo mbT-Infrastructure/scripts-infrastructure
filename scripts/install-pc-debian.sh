@@ -40,7 +40,7 @@ done
 "${SCRIPT_DIR}/install-base-debian.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/install-apt-sources-testing.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/device-reboot.sh" --device "$DEVICE"
-"${SCRIPT_DIR}/build-locales.sh" --device "$DEVICE"
+"${SCRIPT_DIR}/install-locales.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/install-desktop-environment.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/device-reboot.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/install-base-apps.sh" --device "$DEVICE"
