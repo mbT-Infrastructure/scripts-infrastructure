@@ -39,6 +39,7 @@ if [[ -z "$CREDENTIALS_DIR" ]]; then
     echo "Credentials-dir is required!"
     exit 1
 fi
+CREDENTIALS_DIR="$(realpath "$CREDENTIALS_DIR")"
 
 if [[ -e "$WORKING_DIR" ]]; then
     echo "\"${WORKING_DIR}\" exists already. Removing in 10 seconds."
