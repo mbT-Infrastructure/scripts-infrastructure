@@ -55,11 +55,11 @@ if [[ -d "${CREDENTIALS_DIR}/network" ]]; then
     --file network.tar.zst --target "/tmp"
     rm network.tar.zst
     "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
-        "mkdir --parents /home/root/credentials \
-        && cd /home/root/credentials \
+        "mkdir --parents /root/credentials \
+        && cd /root/credentials \
         && compress.sh --decompress /tmp/network.tar.zst \
         && rm /tmp/network.tar.zst \
-        && chown --recursive 'root:root' '/home/root/credentials/network'"
+        && chown --recursive 'root:root' '/root/credentials/network'"
 fi
 
 "${SCRIPT_DIR}/configure-app.sh" --device "$DEVICE" --user root --app NetworkManager --config \
