@@ -3,7 +3,7 @@ set -e
 
 DEVICE=""
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
-SSH_CREDENTIALS_DIR=""
+CREDENTIALS_DIR=""
 USERNAME=""
 WORKING_DIR="${PWD}/.temp-$(basename "$0")"
 
@@ -13,7 +13,7 @@ for ARGUMENT in "$@"; do
         echo "usage: $(basename "$0") [ARGUMENT]"
         echo "Configure default ssh settings."
         echo "ARGUMENT can be"
-        echo "    --credentials-dir Directory containing the ssh credentials (ssh-config, ssh-key)."
+        echo "    --credentials-dir Directory containing the credentials (ssh-config, ssh-key)."
         echo "    --device DEVICE The device name."
         echo "    --user USER The username of the user."
         exit
@@ -24,7 +24,7 @@ done
 while [[ -n "$1" ]]; do
     if [[ "$1" == "--credentials-dir" ]]; then
         shift
-        SSH_CREDENTIALS_DIR="$1"
+        CREDENTIALS_DIR="$1"
     elif [[ "$1" == "--device" ]]; then
         shift
         DEVICE="$1"
@@ -57,9 +57,9 @@ ssh.cfg"
         '/home/${USERNAME}/credentials/ssh' \
     && chmod 0700 '/home/${USERNAME}/credentials/ssh'"
 
-if [[ -n "$SSH_CREDENTIALS_DIR" ]]; then
-    if [[ -f "${SSH_CREDENTIALS_DIR}/ssh-config" ]]; then
-        cp "${SSH_CREDENTIALS_DIR}/ssh-config" ssh-config
+if [[ -n "$CREDENTIALS_DIR" ]]; then
+    if [[ -f "${CREDENTIALS_DIR}/ssh/ssh-config" ]]; then
+        cp "${CREDENTIALS_DIR}/ssh/ssh-config" ssh-config
         "${SCRIPT_DIR}/device-upload-file.sh" --device "$DEVICE" \
         --file ssh-config --target "/home/${USERNAME}/credentials/ssh"
         rm ssh-config
@@ -68,8 +68,8 @@ if [[ -n "$SSH_CREDENTIALS_DIR" ]]; then
             && chmod 0600 '/home/${USERNAME}/credentials/ssh/ssh-config'"
     fi
 
-    if [[ -f "${SSH_CREDENTIALS_DIR}/ssh-key" ]]; then
-        cp "${SSH_CREDENTIALS_DIR}/ssh-key" ssh-key
+    if [[ -f "${CREDENTIALS_DIR}/ssh/ssh-key" ]]; then
+        cp "${CREDENTIALS_DIR}/ssh/ssh-key" ssh-key
         "${SCRIPT_DIR}/device-upload-file.sh" --device "$DEVICE" \
         --file ssh-key --target "/home/${USERNAME}/credentials/ssh"
         rm ssh-key
