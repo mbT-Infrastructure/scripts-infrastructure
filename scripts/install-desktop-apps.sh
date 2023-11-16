@@ -30,6 +30,6 @@ done
 "${SCRIPT_DIR}/install-apps.sh" --device "$DEVICE" --apps \
     "Anki Chromium CopyQ DBeaver DesktopBasics Discord FFmpeg \
     Fileorganizer Firefox Firmware FreeCAD GoogleChrome IntellijIdea Java Krita LibreOffice \
-    Linphone MetadataEditors MintThemes NetworkManager NodeJs OCRTools PortfolioPerformance PDFsam \
-    Python RemoteDesktopClient Scanner ScriptsAdvanced ScriptsDesktop ScriptsDevelopment \
+    Linphone MetadataEditors MintThemes NetworkManager NodeJs OCRTools PDFsam PortfolioPerformance \
+    Printer Python RemoteDesktopClient Scanner ScriptsAdvanced ScriptsDesktop ScriptsDevelopment \
     Shotcut Signal SlickGreeter Sudo UltimakerCura VLC VSCode Xournal++"
