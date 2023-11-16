@@ -52,7 +52,7 @@ cd "$WORKING_DIR"
 if [[ -d "${CREDENTIALS_DIR}/network" ]]; then
     compress.sh "${CREDENTIALS_DIR}/network"
     "${SCRIPT_DIR}/device-upload-file.sh" --device "$DEVICE" \
-    --file network.tar.zst --target "/tmp/network.tar.zst"
+    --file network.tar.zst --target "/tmp"
     rm network.tar.zst
     "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
         "mkdir --parents /home/root/credentials \
