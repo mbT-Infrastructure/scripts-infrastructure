@@ -2,6 +2,7 @@
 set -e
 
 CONFIG_FILE=""
+CREDENTIALS_DIR=""
 DEPENDENCIES=()
 DEVICE=""
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
@@ -14,6 +15,7 @@ for ARGUMENT in "$@"; do
         echo "Configure personal user settings."
         echo "ARGUMENT can be"
         echo "    --config FILE The config file of the user."
+        echo "    --credentials-dir Directory containing the credentials of the user"
         echo "    --device DEVICE The device name."
         echo "    --user USER The Username of the user."
         exit
@@ -34,6 +36,9 @@ while [[ -n "$1" ]]; do
     if [[ "$1" == "--config" ]]; then
         shift
         CONFIG_FILE="$1"
+    elif [[ "$1" == "--credentials-dir" ]]; then
+        shift
+        CREDENTIALS_DIR="$1"
     elif [[ "$1" == "--device" ]]; then
         shift
         DEVICE="$1"
@@ -64,3 +69,6 @@ done
 
 "${SCRIPT_DIR}/configure-app.sh" --device "$DEVICE" --user "$USER_USERNAME" --app Locale \
     --config "$CONFIG_FILE"
+
+"${SCRIPT_DIR}/configure-ssh.sh" --device "$DEVICE" --user "$USER_USERNAME" \
+    --credentials-dir "$CREDENTIALS_DIR"
