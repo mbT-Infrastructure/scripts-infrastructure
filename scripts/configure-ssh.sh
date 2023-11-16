@@ -24,7 +24,7 @@ done
 while [[ -n "$1" ]]; do
     if [[ "$1" == "--credentials-dir" ]]; then
         shift
-        CREDENTIALS_DIR="$1"
+        CREDENTIALS_DIR="$(realpath "$1")"
     elif [[ "$1" == "--device" ]]; then
         shift
         DEVICE="$1"
