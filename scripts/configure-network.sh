@@ -35,8 +35,9 @@ while [[ -n "$1" ]]; do
     shift
 done
 
-if [[ -z "$SSH_CREDENTIALS_DIR" ]]; then
+if [[ -z "$CREDENTIALS_DIR" ]]; then
     echo "Credentials-dir is required!"
+    exit 1
 fi
 
 if [[ -e "$WORKING_DIR" ]]; then
@@ -59,7 +60,7 @@ if [[ -d "${CREDENTIALS_DIR}/network" ]]; then
         && chown --recursive 'root:root' '/home/root/credentials/network'"
 fi
 
-rm -f -r "$WORKING_DIR"
-
 "${SCRIPT_DIR}/configure-app.sh" --device "$DEVICE" --user root --app NetworkManager --config \
     "${CREDENTIALS_DIR}/network-manager.cfg"
+
+rm -f -r "$WORKING_DIR"
