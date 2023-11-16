@@ -52,12 +52,13 @@ cd "$WORKING_DIR"
 if [[ -d "${CREDENTIALS_DIR}/network" ]]; then
     compress.sh "${CREDENTIALS_DIR}/network"
     "${SCRIPT_DIR}/device-upload-file.sh" --device "$DEVICE" \
-    --file network.tar.zst --target "/home/root/credentials/network.tar.zst"
+    --file network.tar.zst --target "/tmp/network.tar.zst"
     rm network.tar.zst
     "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
-        "cd /home/root/credentials \
-        && compress.sh --decompress network.tar.zst \
-        && rm network.tar.zst \
+        "mkdir --parents /home/root/credentials \
+        && cd /home/root/credentials \
+        && compress.sh --decompress /tmp/network.tar.zst \
+        && rm /tmp/network.tar.zst \
         && chown --recursive 'root:root' '/home/root/credentials/network'"
 fi
 
