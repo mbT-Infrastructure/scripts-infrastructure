@@ -71,5 +71,6 @@ fi
 "${SCRIPT_DIR}/configure-desktop-entries.sh" --device "$DEVICE" --user "$USER_USERNAME"
 "${SCRIPT_DIR}/configure-git.sh" --device "$DEVICE" --user "$USER_USERNAME"
 "${SCRIPT_DIR}/configure-scanner.sh" --device "$DEVICE" --user "$USER_USERNAME"
+"${SCRIPT_DIR}/configure-tor-browser.sh" --device "$DEVICE" --user "$USER_USERNAME"
 "${SCRIPT_DIR}/configure-vlc.sh" --device "$DEVICE" --user "$USER_USERNAME"
 "${SCRIPT_DIR}/configure-vs-code.sh" --device "$DEVICE" --user "$USER_USERNAME"
