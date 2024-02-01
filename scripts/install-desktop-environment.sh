@@ -30,4 +30,6 @@ done
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
     "export DEBIAN_FRONTEND=noninteractive && \
     apt update -qq && apt install -y -qq cinnamon && \
-    sed --in-place 's|#\(greeter-hide-users=false\)|\1|g' /etc/lightdm/lightdm.conf"
+    curl --silent --location --output /etc/lightdm/lightdm.conf \
+    https://raw.githubusercontent.com/mbT-Infrastructure/template-config-files/main/debian/lightdm/\
+lightdm.conf"
