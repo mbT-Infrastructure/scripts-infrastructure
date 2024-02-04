@@ -28,5 +28,4 @@ while [[ -n "$1" ]]; do
 done
 
 "${SCRIPT_DIR}/install-apps.sh" --device "$DEVICE" --apps \
-    "CifsUtils Docker Htop NTPClient Scripts SSHFS \
-    VnStat"
+    ""
