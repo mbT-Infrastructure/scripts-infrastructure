@@ -46,7 +46,7 @@ fi
 mkdir "$WORKING_DIR"
 cd "$WORKING_DIR"
 
-"${SCRIPT_DIR}/configure-app.sh" --device "$DEVICE" --user "$USERNAME" --app SSH --config \
+"${SCRIPT_DIR}/configure-apps.sh" --device "$DEVICE" --user "$USERNAME" --apps SSH --config \
     "https://raw.githubusercontent.com/mbT-Infrastructure/template-config-files/main/debian/ssh/\
 ssh.cfg"
 

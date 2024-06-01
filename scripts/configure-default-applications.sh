@@ -32,7 +32,7 @@ while [[ -n "$1" ]]; do
     shift
 done
 
-"${SCRIPT_DIR}/configure-app.sh" --device "$DEVICE" --user "$USERNAME" --app DefaultApplications \
+"${SCRIPT_DIR}/configure-apps.sh" --device "$DEVICE" --user "$USERNAME" --apps DefaultApplications \
     --config \
     "https://raw.githubusercontent.com/mbT-Infrastructure/template-config-files/main/debian/\
 default-applications/default-applications.cfg"

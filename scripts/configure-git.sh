@@ -32,6 +32,6 @@ while [[ -n "$1" ]]; do
     shift
 done
 
-"${SCRIPT_DIR}/configure-app.sh" --device "$DEVICE" --user "$USERNAME" --app Git --config \
+"${SCRIPT_DIR}/configure-apps.sh" --device "$DEVICE" --user "$USERNAME" --apps Git --config \
     "https://raw.githubusercontent.com/mbT-Infrastructure/template-config-files/main/debian/\
 git/git.cfg"

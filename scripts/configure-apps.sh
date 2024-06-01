@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-APP=""
+APPS=""
 CONFIG_FILE=""
 DEPENDENCIES=(download.sh)
 DEVICE=""
@@ -13,9 +13,9 @@ WORKING_DIR="${PWD}/.temp-$(basename "$0")"
 for ARGUMENT in "$@"; do
     if [ "$ARGUMENT" == "-h" ] || [ "$ARGUMENT" == "--help" ]; then
         echo "usage: $(basename "$0") [ARGUMENT]"
-        echo "Configure the app with the install-autonomous.sh script."
+        echo "Configure apps with the install-autonomous.sh script."
         echo "ARGUMENT can be"
-        echo "    --app APP The name of the app."
+        echo "    --apps APPS The names of the apps."
         echo "    --config PATH The path to the config file."
         echo "    --device DEVICE The device name."
         echo "    --user USER The username of the user."
@@ -34,9 +34,9 @@ done
 
 # check arguments
 while [[ -n "$1" ]]; do
-    if [[ "$1" == "--app" ]]; then
+    if [[ "$1" == --app?(s) ]]; then
         shift
-        APP="$1"
+        APPS="$1"
     elif [[ "$1" == "--config" ]]; then
         shift
         CONFIG_FILE="$1"
@@ -74,7 +74,7 @@ cd "$WORKING_DIR"
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
     "chown $USERNAME /tmp/install-autonomous-config.cfg \
         && su $USERNAME --login --command 'install-autonomous.sh configure \
-            --config /tmp/install-autonomous-config.cfg $APP' \
+            --config /tmp/install-autonomous-config.cfg $APPS' \
         && rm /tmp/install-autonomous-config.cfg"
 
 rm -f -r "$WORKING_DIR"

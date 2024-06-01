@@ -32,6 +32,6 @@ while [[ -n "$1" ]]; do
     shift
 done
 
-"${SCRIPT_DIR}/configure-app.sh" --device "$DEVICE" --user "$USERNAME" --app CopyQ --config \
+"${SCRIPT_DIR}/configure-apps.sh" --device "$DEVICE" --user "$USERNAME" --apps CopyQ --config \
     "https://raw.githubusercontent.com/mbT-Infrastructure/template-config-files/main/debian/\
 copyq/copyq.cfg"

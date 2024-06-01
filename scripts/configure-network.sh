@@ -62,7 +62,7 @@ if [[ -d "${CREDENTIALS_DIR}/network" ]]; then
         && chown --recursive 'root:root' '/root/credentials/network'"
 fi
 
-"${SCRIPT_DIR}/configure-app.sh" --device "$DEVICE" --user root --app NetworkManager --config \
+"${SCRIPT_DIR}/configure-apps.sh" --device "$DEVICE" --user root --apps NetworkManager --config \
     "${CREDENTIALS_DIR}/network-manager.cfg"
 
 rm -f -r "$WORKING_DIR"

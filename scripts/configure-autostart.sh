@@ -32,6 +32,6 @@ while [[ -n "$1" ]]; do
     shift
 done
 
-"${SCRIPT_DIR}/configure-app.sh" --device "$DEVICE" --user "$USERNAME" --app Autostart --config \
+"${SCRIPT_DIR}/configure-apps.sh" --device "$DEVICE" --user "$USERNAME" --apps Autostart --config \
     "https://raw.githubusercontent.com/mbT-Infrastructure/template-config-files/main/debian/\
 autostart/autostart.cfg"

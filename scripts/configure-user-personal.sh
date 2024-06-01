@@ -52,22 +52,8 @@ while [[ -n "$1" ]]; do
     shift
 done
 
-"${SCRIPT_DIR}/configure-app.sh" --device "$DEVICE" --user "$USER_USERNAME" --app DesktopFiles \
-    --config "$CONFIG_FILE"
-
-"${SCRIPT_DIR}/configure-app.sh" --device "$DEVICE" --user "$USER_USERNAME" --app Git \
-    --config "$CONFIG_FILE"
-
-"${SCRIPT_DIR}/configure-app.sh" --device "$DEVICE" --user "$USER_USERNAME" --app GSettings \
-    --config "$CONFIG_FILE"
-
-"${SCRIPT_DIR}/configure-app.sh" --device "$DEVICE" --user "$USER_USERNAME" --app Gtk \
-    --config "$CONFIG_FILE"
-
-"${SCRIPT_DIR}/configure-app.sh" --device "$DEVICE" --user "$USER_USERNAME" --app Linphone \
-    --config "$CONFIG_FILE"
-
-"${SCRIPT_DIR}/configure-app.sh" --device "$DEVICE" --user "$USER_USERNAME" --app Locale \
+"${SCRIPT_DIR}/configure-apps.sh" --device "$DEVICE" --user "$USER_USERNAME" \
+    --apps "DesktopFiles Git GSettings Gtk Linphone Locale" \
     --config "$CONFIG_FILE"
 
 "${SCRIPT_DIR}/configure-ssh.sh" --device "$DEVICE" --user "$USER_USERNAME" \
