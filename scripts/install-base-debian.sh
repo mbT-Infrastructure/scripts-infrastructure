@@ -32,4 +32,6 @@ done
 "${SCRIPT_DIR}/install-hostname.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/install-sysctl-conf.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/install-install-autonomous.sh" --device "$DEVICE"
+"${SCRIPT_DIR}/install-apps.sh" --device "$DEVICE" --apps Backgrounds
+"${SCRIPT_DIR}/install-grub.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/device-reboot.sh" --device "$DEVICE"
