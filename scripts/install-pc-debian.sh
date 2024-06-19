@@ -45,4 +45,5 @@ done
 "${SCRIPT_DIR}/device-reboot.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/install-base-apps.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/install-desktop-apps.sh" --device "$DEVICE"
+"${SCRIPT_DIR}/install-network.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/device-reboot.sh" --device "$DEVICE"
