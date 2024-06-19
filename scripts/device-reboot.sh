@@ -21,6 +21,11 @@ if [[ "$(id --user)" != 0 ]]; then
     exit 1
 fi
 
-echo "Reboot device in 30 seconds."
-sleep 30
+if [[ "$SKIP_REBOOT" == "true" ]]; then
+    echo "SKIP_REBOOT is set to true. Skip reboot."
+    exit
+fi
+
+echo "Reboot device in 5 seconds."
+sleep 5
 reboot
