@@ -27,6 +27,8 @@ while [[ -n "$1" ]]; do
     shift
 done
 
+echo "Install default sysctl.conf on device \"$DEVICE\"."
+
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
     "curl --silent --location --output /etc/sysctl.conf \
     https://raw.githubusercontent.com/mbT-Infrastructure/template-config-files/main/debian/\

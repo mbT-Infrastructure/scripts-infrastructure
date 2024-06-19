@@ -27,6 +27,8 @@ while [[ -n "$1" ]]; do
     shift
 done
 
+echo "Install the install-autonomous.sh script on device \"$DEVICE\"."
+
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
     "curl --silent --location --output /usr/local/bin/install-autonomous.sh \
     https://gitlab.com/madebyTimo/scripts/-/raw/main/scripts/install-autonomous.sh && \

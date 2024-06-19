@@ -27,6 +27,8 @@ while [[ -n "$1" ]]; do
     shift
 done
 
+echo "Run apt full-upgrade on device \"$DEVICE\"."
+
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
     "export DEBIAN_FRONTEND=noninteractive && apt update -qq && apt full-upgrade -qq -y \
     --option 'Dpkg::Options::=--force-confdef' --option 'Dpkg::Options::=--force-confold'"

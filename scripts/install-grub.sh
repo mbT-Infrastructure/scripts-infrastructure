@@ -27,6 +27,7 @@ while [[ -n "$1" ]]; do
     shift
 done
 
+echo "Install default grub config on device \"$DEVICE\"."
 
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
     "curl --silent --location --output /etc/default/grub \

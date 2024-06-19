@@ -37,5 +37,7 @@ while [[ -n "$1" ]]; do
     shift
 done
 
+echo "Run updates on device \"$DEVICE\"."
+
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
     "update.sh"

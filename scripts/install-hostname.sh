@@ -27,5 +27,7 @@ while [[ -n "$1" ]]; do
     shift
 done
 
+echo "Set hostname on device \"$DEVICE\"."
+
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
     "echo $DEVICE > /etc/hostname"

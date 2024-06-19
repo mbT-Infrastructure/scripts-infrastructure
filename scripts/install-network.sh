@@ -27,6 +27,8 @@ while [[ -n "$1" ]]; do
     shift
 done
 
+echo "Install default network config on device \"$DEVICE\"."
+
 "${SCRIPT_DIR}/install-apps.sh" --device "$DEVICE" --apps NetworkManager
 
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \

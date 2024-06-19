@@ -37,6 +37,8 @@ if [[ -z "$DRIVE_PASSWORD" ]]; then
     exit 1
 fi
 
+echo "Setup unlocking of boot drive with tpm on device \"$DEVICE\"."
+
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
     "export DEBIAN_FRONTEND=noninteractive && apt update -qq \
     && apt install -y -qq clevis clevis-initramfs clevis-luks clevis-tpm2"

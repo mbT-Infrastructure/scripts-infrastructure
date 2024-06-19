@@ -32,5 +32,7 @@ while [[ -n "$1" ]]; do
     shift
 done
 
+echo "Installing apps \"$APPS\" on device \"$DEVICE\"."
+
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
     "install-autonomous.sh install $APPS"

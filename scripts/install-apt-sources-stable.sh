@@ -27,6 +27,7 @@ while [[ -n "$1" ]]; do
     shift
 done
 
+echo "Add apt stable sources on device \"$DEVICE\"."
 
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
     "curl --silent --location --output /etc/apt/sources.list.d/stable-main.list \

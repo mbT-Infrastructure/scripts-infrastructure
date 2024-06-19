@@ -52,6 +52,8 @@ while [[ -n "$1" ]]; do
     shift
 done
 
+echo "Configuring user \"$USERNAME\" on device \"$DEVICE\"."
+
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
     "(adduser $USER_USERNAME --disabled-password --gecos '' || true ) \
     && usermod --remove --groups $USER_GROUPS $USER_USERNAME \

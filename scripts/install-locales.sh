@@ -27,6 +27,8 @@ while [[ -n "$1" ]]; do
     shift
 done
 
+echo "Install locales on device \"$DEVICE\"."
+
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
     "echo de_DE.UTF-8 UTF-8 > /etc/locale.gen && \
     echo en_US.UTF-8 UTF-8 >> /etc/locale.gen && \

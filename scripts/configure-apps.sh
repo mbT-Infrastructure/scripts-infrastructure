@@ -60,6 +60,8 @@ if [[ -e "$WORKING_DIR" ]]; then
 fi
 mkdir "$WORKING_DIR"
 
+echo "Configuring apps \"$APPS\" for user \"$USERNAME\" on device \"$DEVICE\"."
+
 if [[ "$CONFIG_FILE" == "http://"* ]] || [[ "$CONFIG_FILE" == "https://"* ]]; then
     download.sh --name "${WORKING_DIR}/install-autonomous-config.cfg" "$CONFIG_FILE"
 else

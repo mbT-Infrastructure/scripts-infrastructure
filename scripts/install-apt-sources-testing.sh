@@ -27,6 +27,8 @@ while [[ -n "$1" ]]; do
     shift
 done
 
+echo "Add apt testing sources on device \"$DEVICE\"."
+
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
     "curl --silent --location --output /etc/apt/sources.list.d/testing-main.list \
     https://raw.githubusercontent.com/mbT-Infrastructure/template-config-files/main/debian/apt/\

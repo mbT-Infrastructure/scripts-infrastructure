@@ -37,5 +37,7 @@ if [[ -z "$ROOT_PASSWORD" ]]; then
     exit 1
 fi
 
+echo "Setting root password on device \"$DEVICE\"."
+
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
     "yes '${ROOT_PASSWORD}' | passwd root"
