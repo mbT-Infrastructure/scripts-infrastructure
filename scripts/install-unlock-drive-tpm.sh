@@ -56,4 +56,4 @@ fi
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
     "echo '$DRIVE_PASSWORD' | \
     clevis luks bind -k - \
-    -d '$BOOT_LUKS' tpm2 '{\\\"pcr_bank\\\":\\\"sha256\\\",\\\"pcr_ids\\\":\\\"0,1,7\\\"}'"
+    -d '$BOOT_LUKS' tpm2 '{\"pcr_bank\":\"sha256\",\"pcr_ids\":\"0,1,7\"}'"
