@@ -16,12 +16,11 @@ done
 
 # Check if run as root
 if [[ "$(id --user)" != 0 ]]; then
-    echo "Script must run as root"
     if [[ -n "$(which sudo)" ]];then
-        echo "Try with sudo"
         sudo "$0" "$@"
         exit
     fi
+    echo "Script must run as root"
     exit 1
 fi
 
@@ -32,7 +31,7 @@ while [[ -n "$1" ]]; do
         COMMAND="$1"
     elif [[ "$1" == "--device" ]]; then
         shift
-        echo "$(basename "$0"): \"--device $1\" is ignored"
+        echo "$(basename "$0"): \"--device $1\" is ignored" >&2
     else
         echo "Unknown argument: \"$1\""
         exit 1

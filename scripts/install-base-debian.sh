@@ -31,6 +31,7 @@ done
 "${SCRIPT_DIR}/install-apt-sources-stable.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/install-hostname.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/install-sysctl-conf.sh" --device "$DEVICE"
+"${SCRIPT_DIR}/install-performance-settings.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/install-install-autonomous.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/install-certificate-authorities.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/install-apps.sh" --device "$DEVICE" --apps "Backgrounds Basics"
