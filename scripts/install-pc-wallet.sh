@@ -41,11 +41,14 @@ done
 "${SCRIPT_DIR}/install-locales.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/install-desktop-environment.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/install-apps.sh" --device "$DEVICE" --apps \
-    "Backgrounds Basics Electrum Htop NTPClient SlickGreeter VerusDesktop"
+    "Electrum Htop MoneroGui NTPClient VerusDesktop"
 "${SCRIPT_DIR}/configure-user.sh" --device "$DEVICE" --groups plugdev --user user
 "${SCRIPT_DIR}/configure-cinnamon.sh" --device "$DEVICE" --user user
 "${SCRIPT_DIR}/configure-default-applications.sh" --device "$DEVICE" --user user
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command  \
-    "sed --in-place 's|#\(autologin-user=\).*|\1user|g' /etc/lightdm/lightdm.conf"
+    "echo 'autologin-user=user' >> /etc/lightdm/lightdm.conf"
+"${SCRIPT_DIR}/install-network.sh" --device "$DEVICE"
+"${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command  \
+    "passwd --delete user && passwd --lock root"
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command "systemctl disable meshagent"
 "${SCRIPT_DIR}/device-reboot.sh" --device "$DEVICE"
