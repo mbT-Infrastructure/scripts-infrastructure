@@ -50,5 +50,6 @@ done
 "${SCRIPT_DIR}/install-network.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command  \
     "passwd --delete user && passwd --lock root"
-"${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command "systemctl disable meshagent"
 "${SCRIPT_DIR}/device-reboot.sh" --device "$DEVICE"
+echo "Disable meshagent service. Remote access is still available till next reboot."
+"${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command "systemctl disable meshagent"
