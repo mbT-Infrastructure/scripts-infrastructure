@@ -28,7 +28,7 @@ while [[ -n "$1" ]]; do
 done
 
 "${SCRIPT_DIR}/install-apps.sh" --device "$DEVICE" --apps \
-    "Anki Ausweisapp AuthenticationModules Camera Chromium CopyQ DBeaver DesktopBasics \
+    "Anki Ausweisapp AuthenticationModules Camera Chromium CopyQ DBeaver DesktopBasics Electrum \
     FFmpeg Fileorganizer Firefox Firmware FreeCAD IntellijIdea Java Krita LibreOffice \
     Linphone MetadataEditors MintThemes NetworkManager NodeJs OCRTools PDFsam PortfolioPerformance \
     Printer Python RemoteDesktopClient Scanner ScriptsAdvanced ScriptsDesktop ScriptsDevelopment \
