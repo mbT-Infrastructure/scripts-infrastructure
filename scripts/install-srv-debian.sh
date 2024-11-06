@@ -28,6 +28,8 @@ while [[ -n "$1" ]]; do
 done
 
 "${SCRIPT_DIR}/install-base-debian.sh" --device "$DEVICE"
+"${SCRIPT_DIR}/install-base-apps.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/install-server-apps.sh" --device "$DEVICE"
+"${SCRIPT_DIR}/install-network.sh" --device "$DEVICE"
 "${SCRIPT_DIR}/configure-user.sh" --device "$DEVICE" --groups docker --user user
 "${SCRIPT_DIR}/device-reboot.sh" --device "$DEVICE"

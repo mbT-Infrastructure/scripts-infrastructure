@@ -48,6 +48,10 @@ done
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command  \
     "echo 'autologin-user=user' >> /etc/lightdm/lightdm.conf"
 "${SCRIPT_DIR}/install-network.sh" --device "$DEVICE"
+"${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
+    "curl --silent --location --output /etc/nftables.conf \
+    https://raw.githubusercontent.com/mbT-Infrastructure/template-config-files/main/debian/\
+nftables/pc-wallet.nft"
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command  \
     "passwd --delete user && passwd --lock root"
 "${SCRIPT_DIR}/device-reboot.sh" --device "$DEVICE"

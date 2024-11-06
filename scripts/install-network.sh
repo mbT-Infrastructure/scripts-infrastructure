@@ -35,3 +35,15 @@ echo "Install default network config on device \"$DEVICE\"."
     "curl --silent --location --output /etc/network/interfaces \
     https://raw.githubusercontent.com/mbT-Infrastructure/template-config-files/main/debian/\
 network-interfaces/interfaces"
+
+"${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
+    "bash -c 'nmcli --fields UUID,TYPE --terse connection show \
+    | grep ethernet | cut --delimiter : --fields 1 \
+    | while read -r CONNECTION; do \
+        nmcli connection modify \"\\\$CONNECTION\" 802-3-ethernet.wake-on-lan magic; \
+    done'"
+
+"${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
+    "curl --silent --location --output /etc/nftables.conf \
+    https://raw.githubusercontent.com/mbT-Infrastructure/template-config-files/main/debian/\
+nftables/pc-debian.nft"
