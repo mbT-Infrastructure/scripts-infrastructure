@@ -3,6 +3,7 @@ set -e
 
 DEVICE=""
 DRIVE_PASSWORD=""
+PCR_IDS="0,1,7"
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
 # help message
@@ -25,6 +26,9 @@ while [[ -n "$1" ]]; do
     elif [[ "$1" == "--password" ]]; then
         shift
         DRIVE_PASSWORD="$1"
+    elif [[ "$1" == "--pcr-ids" ]]; then
+        shift
+        PCR_IDS="$1"
     else
         echo "Unknown argument: \"$1\""
         exit 1
@@ -56,4 +60,4 @@ fi
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
     "echo '$DRIVE_PASSWORD' | \
     clevis luks bind -k - \
-    -d '$BOOT_LUKS' tpm2 '{\"pcr_bank\":\"sha256\",\"pcr_ids\":\"0,1,7\"}'"
+    -d '$BOOT_LUKS' tpm2 '{\"pcr_bank\":\"sha256\",\"pcr_ids\":\"${PCR_IDS}\"}'"
