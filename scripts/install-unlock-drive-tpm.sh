@@ -14,6 +14,7 @@ for ARGUMENT in "$@"; do
         echo "ARGUMENT can be"
         echo "    --device DEVICE The device name."
         echo "    --password PASSWORD The password of the drive."
+        echo "    --pcr-ids IDS The PCR Ids to bind the drive to, default \"${PCR_IDS}\"."
         exit
     fi
 done
