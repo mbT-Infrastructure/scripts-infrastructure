@@ -31,5 +31,5 @@ done
     "Anki Ausweisapp AuthenticationModules Camera Chromium CopyQ DBeaver DesktopBasics Electrum \
     FFmpeg Fileorganizer Firefox Firmware FreeCAD IntellijIdea Java Krita LibreOffice \
     Linphone MetadataEditors MintThemes NetworkManager NodeJs OCRTools PDFsam PortfolioPerformance \
-    Printer Python RemoteDesktopClient Scanner ScriptsAdvanced ScriptsDesktop ScriptsDevelopment \
+    Printer RemoteDesktopClient Scanner ScriptsAdvanced ScriptsDesktop ScriptsDevelopment \
     Shotcut Signal SlickGreeter Sudo UltimakerCura VLC VSCode Xournal++"
