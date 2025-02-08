@@ -28,4 +28,4 @@ while [[ -n "$1" ]]; do
 done
 
 "${SCRIPT_DIR}/install-apps.sh" --device "$DEVICE" --apps \
-    ""
+    "ScriptsAdvanced"
