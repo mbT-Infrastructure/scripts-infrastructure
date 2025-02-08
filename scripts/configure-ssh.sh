@@ -50,36 +50,41 @@ cd "$WORKING_DIR"
     "https://raw.githubusercontent.com/mbT-Infrastructure/template-config-files/main/debian/ssh/\
 ssh.cfg"
 
+USER_HOME="/home/${USERNAME}"
+if [[ "$USERNAME" == "root" ]]; then
+    USER_HOME="/root"
+fi
+
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
-    "rm -f -r '/home/${USERNAME}/credentials/ssh' \
-    && mkdir --parents '/home/${USERNAME}/credentials/ssh' \
-    && chown '${USERNAME}:${USERNAME}' '/home/${USERNAME}/credentials' \
-        '/home/${USERNAME}/credentials/ssh' \
-    && chmod 0700 '/home/${USERNAME}/credentials/ssh'"
+    "rm -f -r '${USER_HOME}/credentials/ssh' \
+    && mkdir --parents '${USER_HOME}/credentials/ssh' \
+    && chown '${USERNAME}:${USERNAME}' '${USER_HOME}/credentials' \
+        '${USER_HOME}/credentials/ssh' \
+    && chmod 0700 '${USER_HOME}/credentials/ssh'"
 
 if [[ -n "$CREDENTIALS_DIR" ]]; then
     if [[ -f "${CREDENTIALS_DIR}/ssh/ssh-config" ]]; then
         cp "${CREDENTIALS_DIR}/ssh/ssh-config" ssh-config
         "${SCRIPT_DIR}/device-upload-file.sh" --device "$DEVICE" \
-        --file ssh-config --target "/home/${USERNAME}/credentials/ssh"
+        --file ssh-config --target "${USER_HOME}/credentials/ssh"
         rm ssh-config
         "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
-            "chown '${USERNAME}:${USERNAME}' '/home/${USERNAME}/credentials/ssh/ssh-config' \
-            && chmod 0600 '/home/${USERNAME}/credentials/ssh/ssh-config'"
+            "chown '${USERNAME}:${USERNAME}' '${USER_HOME}/credentials/ssh/ssh-config' \
+            && chmod 0600 '${USER_HOME}/credentials/ssh/ssh-config'"
     fi
 
     if [[ -f "${CREDENTIALS_DIR}/ssh/ssh-key" ]]; then
         cp "${CREDENTIALS_DIR}/ssh/ssh-key" ssh-key
         "${SCRIPT_DIR}/device-upload-file.sh" --device "$DEVICE" \
-        --file ssh-key --target "/home/${USERNAME}/credentials/ssh"
+        --file ssh-key --target "${USER_HOME}/credentials/ssh"
         rm ssh-key
         "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
-            "chown '${USERNAME}:${USERNAME}' '/home/${USERNAME}/credentials/ssh/ssh-key' \
-            && chmod 0600 '/home/${USERNAME}/credentials/ssh/ssh-key' \
-            && ssh-keygen -f '/home/${USERNAME}/credentials/ssh/ssh-key' -y \
-            > '/home/${USERNAME}/credentials/ssh/ssh-key.pub' \
-            && chown '${USERNAME}:${USERNAME}' '/home/${USERNAME}/credentials/ssh/ssh-key.pub' \
-            && chmod 0600 '/home/${USERNAME}/credentials/ssh/ssh-key.pub'"
+            "chown '${USERNAME}:${USERNAME}' '${USER_HOME}/credentials/ssh/ssh-key' \
+            && chmod 0600 '${USER_HOME}/credentials/ssh/ssh-key' \
+            && ssh-keygen -f '${USER_HOME}/credentials/ssh/ssh-key' -y \
+            > '${USER_HOME}/credentials/ssh/ssh-key.pub' \
+            && chown '${USERNAME}:${USERNAME}' '${USER_HOME}/credentials/ssh/ssh-key.pub' \
+            && chmod 0600 '${USER_HOME}/credentials/ssh/ssh-key.pub'"
     fi
 fi
 
