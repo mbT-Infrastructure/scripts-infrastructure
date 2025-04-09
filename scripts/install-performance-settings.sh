@@ -30,10 +30,13 @@ done
 echo "Tune performance settings depending on hardware capabilities on device \"$DEVICE\"."
 
 MEMORY_SIZE_KIB="$("${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
-    "awk '/MemTotal/{print \$2}' /proc/meminfo")"
+    "awk '/MemTotal/{print \$2}' /proc/meminfo" | sed --silent 's|^\([0-9]*\)$|\1|p')"
 MEMORY_SIZE_GB="$((MEMORY_SIZE_KIB * 1024 / 1000000000))"
 
 if [[ "$MEMORY_SIZE_GB" -lt 16 ]]; then
     echo "Memory size is less than 16 GB. Disable tmpfs mount on /tmp."
     "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command "systemctl mask tmp.mount"
+else
+    echo "Memory size is greater than or equal to 16 GB. Enable tmpfs mount on /tmp."
+    "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command "systemctl unmask tmp.mount"
 fi
