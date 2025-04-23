@@ -2,6 +2,7 @@
 set -e
 
 COMMAND=""
+DEVICE=""
 
 # help message
 for ARGUMENT in "$@"; do
@@ -10,19 +11,10 @@ for ARGUMENT in "$@"; do
         echo "Run a command on the local device."
         echo "ARGUMENT can be"
         echo "    --command COMMAND The command to execute."
+        echo "    --device DEVICE The device name."
         exit
     fi
 done
-
-# Check if run as root
-if [[ "$(id --user)" != 0 ]]; then
-    if [[ -n "$(which sudo)" ]];then
-        sudo "$0" "$@"
-        exit
-    fi
-    echo "Script must run as root"
-    exit 1
-fi
 
 # check arguments
 while [[ -n "$1" ]]; do
@@ -31,7 +23,7 @@ while [[ -n "$1" ]]; do
         COMMAND="$1"
     elif [[ "$1" == "--device" ]]; then
         shift
-        echo "$(basename "$0"): \"--device $1\" is ignored" >&2
+        DEVICE="$1"
     else
         echo "Unknown argument: \"$1\""
         exit 1
@@ -39,4 +31,13 @@ while [[ -n "$1" ]]; do
     shift
 done
 
-eval "$COMMAND"
+if [[ -z "$DEVICE" ]]; then
+    echo "Device is required."
+    exit 1
+fi
+
+if [[ "$DEVICE" == localhost ]]; then
+    eval "$COMMAND"
+else
+    echo "$COMMAND" | ssh "$DEVICE" bash
+fi

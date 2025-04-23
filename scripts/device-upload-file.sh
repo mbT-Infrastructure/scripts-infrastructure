@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
+DEVICE=""
 FILE=""
 TARGET=""
 
@@ -16,22 +17,11 @@ for ARGUMENT in "$@"; do
     fi
 done
 
-# Check if run as root
-if [[ "$(id --user)" != 0 ]]; then
-    echo "Script must run as root"
-    if [[ -n "$(which sudo)" ]];then
-        echo "Try with sudo"
-        sudo "$0" "$@"
-        exit
-    fi
-    exit 1
-fi
-
 # check arguments
 while [[ -n "$1" ]]; do
     if [[ "$1" == "--device" ]]; then
         shift
-        echo "$(basename "$0"): \"--device $1\" is ignored"
+        DEVICE="$1"
     elif [[ "$1" == "--file" ]]; then
         shift
         FILE="$1"
@@ -51,4 +41,12 @@ else
     echo "File \"${FILE}\" not found"
 fi
 
-cp "$FILE" "$TARGET"
+if [[ -z "$DEVICE" ]] || [[ "$DEVICE" == localhost ]]; then
+    if [[ "$(id --user)" != 0 ]]; then
+        sudo cp "$FILE" "$TARGET"
+    else
+        cp "$FILE" "$TARGET"
+    fi
+else
+    scp "$FILE" "${DEVICE}:$TARGET"
+fi

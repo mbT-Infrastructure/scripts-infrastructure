@@ -40,7 +40,7 @@ network-interfaces/interfaces"
     "bash -c 'nmcli --fields UUID,TYPE --terse connection show \
     | grep ethernet | cut --delimiter : --fields 1 \
     | while read -r CONNECTION; do \
-        nmcli connection modify \"\\\$CONNECTION\" 802-3-ethernet.wake-on-lan magic; \
+        nmcli connection modify \"\$CONNECTION\" 802-3-ethernet.wake-on-lan magic; \
     done'"
 
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
