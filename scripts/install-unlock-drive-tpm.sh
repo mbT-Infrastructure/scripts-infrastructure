@@ -3,7 +3,7 @@ set -e
 
 DEVICE=""
 DRIVE_PASSWORD=""
-PCR_IDS="0,1,7"
+PCR_IDS="1,3,5,7,11,12,14,15"
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
 # help message
