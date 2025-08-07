@@ -3,7 +3,7 @@ set -e
 
 DEVICE=""
 DRIVE_PASSWORD=""
-PCR_IDS="1,3,5,7,11,12,14,15"
+PCR_IDS="1,5,7"
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
 # help message
@@ -59,6 +59,10 @@ if [[ -z "$BOOT_LUKS" ]]; then
     exit 1
 fi
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
-    "echo '$DRIVE_PASSWORD' | \
-    clevis luks bind -k - \
-    -d '$BOOT_LUKS' tpm2 '{\"pcr_bank\":\"sha256\",\"pcr_ids\":\"${PCR_IDS}\"}'"
+    "echo '$DRIVE_PASSWORD' \
+        | cryptsetup luksKillSlot '$BOOT_LUKS' 5 || true \
+    && cryptsetup token remove '$BOOT_LUKS' --token-id 5 || true \
+    && echo '$DRIVE_PASSWORD' \
+        | clevis luks bind -s 5 -t 5 -k - \
+        -d '$BOOT_LUKS' tpm2 '{\"pcr_bank\":\"sha256\",\"pcr_ids\":\"${PCR_IDS}\"}'\
+    && tpm2_pcrread sha256 > /root/.configured-tpm2-pcr-values"
