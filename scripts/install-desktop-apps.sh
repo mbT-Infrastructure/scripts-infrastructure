@@ -28,8 +28,8 @@ while [[ -n "$1" ]]; do
 done
 
 "${SCRIPT_DIR}/install-apps.sh" --device "$DEVICE" --apps \
-    "Anki Ausweisapp AuthenticationModules Camera Chromium CopyQ DBeaver DesktopBasics Electrum \
-    FFmpeg Fileorganizer Firefox Firmware FreeCAD IntellijIdea Java Krita LibreOffice \
+    "Anki Ausweisapp AuthenticationModules Bruno Camera Chromium CopyQ DBeaver DesktopBasics \
+    Electrum FFmpeg Fileorganizer Firefox Firmware FreeCAD IntellijIdea Java Krita LibreOffice \
     Linphone MetadataEditors MintThemes MoneroGui NetworkManager OCRTools PDFsam \
     PortfolioPerformance Printer RemoteDesktopClient Scanner ScriptsAdvanced ScriptsDesktop \
     ScriptsDevelopment Shotcut Signal SlickGreeter Sudo UltimakerCura VLC VSCode Xournal++"
