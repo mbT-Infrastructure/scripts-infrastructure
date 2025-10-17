@@ -30,7 +30,8 @@ done
 echo "Add apt testing sources on device \"$DEVICE\"."
 
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
-    "curl --silent --location --output /etc/apt/sources.list.d/testing-main.list \
+    "curl --silent --location --output /etc/apt/sources.list.d/testing-main.sources \
     https://raw.githubusercontent.com/mbT-Infrastructure/template-config-files/main/debian/apt/\
-sources-testing-main.list"
+sources-testing-main.sources\
+    && rm -f /etc/apt/sources.list.d/testing-main.list"
 "${SCRIPT_DIR}/maintenance-apt-full-upgrade.sh" --device "$DEVICE"

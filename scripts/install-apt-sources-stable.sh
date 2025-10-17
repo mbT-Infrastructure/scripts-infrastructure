@@ -30,8 +30,8 @@ done
 echo "Add apt stable sources on device \"$DEVICE\"."
 
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
-    "curl --silent --location --output /etc/apt/sources.list.d/stable-main.list \
+    "curl --silent --location --output /etc/apt/sources.list.d/stable-main.sources \
     https://raw.githubusercontent.com/mbT-Infrastructure/template-config-files/main/debian/apt/\
-sources-stable-main.list \
-    && rm -f /etc/apt/sources.list"
+sources-stable-main.sources \
+    && rm -f /etc/apt/sources.list.d/stable-main.list /etc/apt/sources.list"
 "${SCRIPT_DIR}/maintenance-apt-full-upgrade.sh" --device "$DEVICE"
