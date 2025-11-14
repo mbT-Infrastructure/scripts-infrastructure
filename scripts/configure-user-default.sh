@@ -54,7 +54,7 @@ done
 
 
 USER_GROUPS="audio,bluetooth,dip,netdev,plugdev,scanner,video"
-if [[ -n "$SUPERUSER" ]]; then
+if [[ "$SUPERUSER" == true ]]; then
     USER_GROUPS+=",docker,sudo"
 fi
 ADDITIONAL_ARGUMENTS=()
