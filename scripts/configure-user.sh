@@ -56,8 +56,7 @@ echo "Configuring user \"$USER_USERNAME\" on device \"$DEVICE\"."
 
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
     "(adduser $USER_USERNAME --disabled-password --gecos '' || true ) \
-    && usermod --remove --groups $USER_GROUPS $USER_USERNAME \
-    && usermod --append --groups $USER_GROUPS $USER_USERNAME"
+    && usermod --groups $USER_GROUPS $USER_USERNAME"
 
 if [[ -n "$USER_PASSWORD" ]]; then
     "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
