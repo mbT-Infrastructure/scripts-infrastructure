@@ -41,4 +41,4 @@ echo "Remove unwanted apps on device \"$DEVICE\"."
 
 "${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
     "dpkg --purge deja-dup evince gedit gnome-2048 gnome-system-monitor gnote hexchat \
-    pidgin rhythmbox smbios-utils thunderbird totem xorriso"
+    pidgin rhythmbox smbios-utils thunderbird totem"
