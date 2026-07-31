@@ -29,7 +29,4 @@ done
 
 echo "Add certificate authorities on device \"$DEVICE\"."
 
-"${SCRIPT_DIR}/device-run-command.sh" --device "$DEVICE" --command \
-    "curl --silent --location --output /usr/local/share/ca-certificates/mbt-ca-cert.crt \
-    https://nas.madebytimo.de:5011/index.php/s/RaHmE2gJRYwkayp/download \
-    && update-ca-certificates"
+"${SCRIPT_DIR}/install-apps.sh" --device "$DEVICE" --apps "MbtPki"
